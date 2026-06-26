@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Изменение статуса заказа{% endblock %}
+
+{% block content %}
+<h1>✏️ Изменение статуса заказа #{{ order.id_order }}</h1>
+
+<div class="order-info">
+    <p><strong>Клиент:</strong> {{ order.customer_name or 'Не указан' }}</p>
+    <p><strong>Дата:</strong> {{ order.order_date }}</p>
+    <p><strong>Сумма:</strong> {{ order.total_amount }} руб.</p>
+    <p><strong>Текущий статус:</strong> 
+        <span style="color: 
+            {% if order.status == 'Новый' %}blue
+            {% elif order.status == 'В обработке' %}orange
+            {% elif order.status == 'Готов' %}green
+            {% elif order.status == 'Выдан' %}purple
+            {% elif order.status == 'Отменён' %}red
+            {% else %}black{% endif %}">
+            {{ order.status }}
+        </span>
+    </p>
+</div>
+
+<form method="POST" class="form">
+    <div class="form-group">
+        <label>Новый статус:</label>
+        <select name="status" required>
+            {% for status in statuses %}
+                <option value="{{ status }}" {% if status == order.status %}selected{% endif %}>
+                    {{ status }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit">Сохранить</button>
+    <a href="{{ url_for('worker_orders') }}" class="btn">Отмена</a>
+</form>
+
+<a href="{{ url_for('worker_dashboard') }}" class="btn">← Назад к панели</a>
+
+<style>
+.order-info {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.order-info p {
+    margin: 8px 0;
+}
+</style>
+{% endblock %}

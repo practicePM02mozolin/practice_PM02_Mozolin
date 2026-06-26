@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Просмотр заказов{% endblock %}
+
+{% block content %}
+<h1>📋 Просмотр заказов</h1>
+<a href="{{ url_for('worker_dashboard') }}" class="btn">← Назад</a>
+
+<a href="{% if not orders %}<p>Нет заказов для отображения.</p>{% endif %}
+
+<tr>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Клиент</th>
+            <th>Дата</th>
+            <th>Сумма</th>
+            <th>Статус</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id_order }}</td>
+            <td>{{ order.customer_name or 'Нет данных' }}</td>
+            <td>{{ order.order_date }}</td>
+            <td>{{ order.total_amount }} руб.</td>
+            <td style="color: 
+                {% if order.status == 'Новый' %}blue
+                {% elif order.status == 'В обработке' %}orange
+                {% elif order.status == 'Готов' %}green
+                {% elif order.status == 'Выдан' %}purple
+                {% elif order.status == 'Отменён' %}red
+                {% else %}black{% endif %}">
+                {{ order.status }}
+            </td>
+            <td>
+                <a href="{{ url_for('worker_update_order', order_id=order.id_order) }}" class="btn">✏️ Изменить статус</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
