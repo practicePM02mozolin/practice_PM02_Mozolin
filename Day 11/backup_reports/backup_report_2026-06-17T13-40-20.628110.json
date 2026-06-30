@@ -1,0 +1,36 @@
+{
+  "job_name": "elasticsearch_snapshot",
+  "status": "success",
+  "size_bytes": 341835776,
+  "duration_seconds": 3,
+  "timestamp": "2026-06-17T13:40:20.628110",
+  "checksum_md5": "139e6c97315a7e41784604e00096be4a",
+  "indices_count": 3,
+  "data": {
+    "indices": [
+      {
+        "name": "logs-2026.06.17",
+        "doc_count": 9866,
+        "size_mb": 114
+      },
+      {
+        "name": "metrics-2026.06.17",
+        "doc_count": 3295,
+        "size_mb": 131
+      },
+      {
+        "name": "security-2026.06.17",
+        "doc_count": 1319,
+        "size_mb": 81
+      }
+    ],
+    "total_size_mb": 326,
+    "status": "success"
+  },
+  "compressed": {
+    "size_before_mb": 326,
+    "size_after_mb": 228.2,
+    "compression_ratio": "70%"
+  },
+  "server": "localhost (тестовый)"
+}
