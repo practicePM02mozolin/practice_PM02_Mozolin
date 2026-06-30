@@ -1,0 +1,14 @@
+# Основные зависимости
+sqlalchemy==2.0.23
+
+# Тестирование
+pytest==7.4.3
+pytest-mock==3.12.0
+pytest-httpx==0.25.2
+pytest-cov==4.1.0
+
+# HTTP клиент
+httpx==0.25.2
+
+# Утилиты
+python-dotenv==1.0.0
